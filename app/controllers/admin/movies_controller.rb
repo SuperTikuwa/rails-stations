@@ -12,7 +12,7 @@ class Admin::MoviesController < ApplicationController
     if @movie.save
       redirect_to admin_movies_path
     else
-      render :new, :status => :bad_request
+      render :new
     end
   end
 
