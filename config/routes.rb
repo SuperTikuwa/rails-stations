@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   get "/movies" => "movies#index"
   get "/admin/movies" => "admin/movies#index"
   get "/admin/movies/new" => "admin/movies#new"
-  post "/admin/movies/new" => "admin/movies#create"
+  post "/admin/movies" => "admin/movies#create"
 end
