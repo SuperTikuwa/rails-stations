@@ -17,6 +17,12 @@
 <td><%=movie.year%></td>
 <td><%=movie.description%></td>
 <td><img src="<%=movie.image_url%>"/></td>
-<td><%=movie.is_showing?"上映中":"上映予定"%></td>
+<td>
+<%if movie.is_showing%>
+"上映中"
+<%else%>
+"上映予定"
+<%end%>
+</td>
 </tr>
 <%end%>
