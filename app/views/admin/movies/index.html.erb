@@ -1,30 +1,30 @@
-<table class="movies">
-<thead>
-<tr>
-<th>ID</th>
-<th>タイトル</th>
-<th>公開年</th>
-<th>概要</th>
-<th>画像URL</th>
-<th>上映中</th>
-</tr>
-</thead>
-<tbody>
-<%@movies.each do |movie|%>
-<tr>
-<td><%=movie.id%></td>
-<td><%=movie.name%></td>
-<td><%=movie.year%></td>
-<td><%=movie.description%></td>
-<td><img src="<%=movie.image_url%>"/></td>
-<td>
-<%if movie.is_showing%>
-"上映中"
-<%else%>
-"上映予定"
-<%end%>
-</td>
-</tr>
-<%end%>
-</tbody>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>公開年</th>
+      <th>概要</th>
+      <th>画像URL</th>
+      <th>上映中</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@movies.each do |movie|%>
+      <tr>
+        <td><%=movie.id%></td>
+        <td><%=movie.name%></td>
+        <td><%=movie.year%></td>
+        <td><%=movie.description%></td>
+        <td><img src="<%=movie.image_url%>"/></td>
+        <td>
+          <%if movie.is_showing%>
+            "上映中"
+          <%else%>
+            "上映予定"
+        <%end%>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
 </table>
