@@ -27,7 +27,6 @@ class Admin::MoviesController < ApplicationController
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
-        logger.debug "FUGAFUGA"
         render :edit
       end
     end
