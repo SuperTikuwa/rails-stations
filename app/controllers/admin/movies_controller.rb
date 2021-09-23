@@ -22,13 +22,18 @@ class Admin::MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    @movie.update(movie_params)
-    redirect_to admin_movies_path
+
+    Movie.create(movie_params)
+    if @movie.update(movie_params)
+      redirect_to admin_movies_path
+    else
+      render :edit
+    end
   end
 
   private
 
   def movie_params
-    params.permit(:name, :year, :description, :image_url, :is_showing)
+    params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
   end
 end
