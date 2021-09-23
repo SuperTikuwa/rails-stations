@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post "/admin/movies" => "admin/movies#create"
   get "/admin/movies/:id/edit" => "admin/movies#edit"
   patch "/admin/movies/:id" => "admin/movies#update"
+  put "/admin/movies/:id" => "admin/movies#update"
 end
