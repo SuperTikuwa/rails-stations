@@ -1,0 +1,18 @@
+<%=form_with model: @movie,url: "/admin/movies/#{@movie.id}/update" do |f|%>
+<%= f.label :name %>
+<%= f.text_field :name ,value:@movie.name%>
+<br>
+<%= f.label :year%>
+<%= f.text_field :year,value:@movie.year%>
+<br>
+<%= f.label :description%>
+<%= f.text_field :description,value:@movie.description %>
+<br>
+<%= f.label :image_url%>
+<%= f.text_field :image_url,value:@movie.image_url %>
+<br>
+<%= f.label :is_showing%>
+<%=f.check_box :is_showing,value:@movie.is_showing%>
+<br>
+<%= f.submit %>
+<%end%>

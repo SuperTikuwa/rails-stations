@@ -1,6 +1,22 @@
-<% @movies.each do |movie|%>
-  <%=movie.name%>
-  <%=movie.year%>
-  <%=movie.description%>
-  <%=movie.image_url%>
-<%end%>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>公開年</th>
+      <th>概要</th>
+      <th>画像URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@movies.each do |movie|%>
+      <tr>
+        <td><%=movie.id%></td>
+        <td><%=movie.name%></td>
+        <td><%=movie.year%></td>
+        <td><%=movie.description%></td>
+        <td><img src="<%=movie.image_url%>"/></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
