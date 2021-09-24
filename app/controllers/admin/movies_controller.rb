@@ -22,16 +22,16 @@ class Admin::MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    logger.debug movie_params.present?
-    logger.debug movie_params
-    logger.debug params
-    logger.debug params[:movie]
     if movie_params.present?
-      movie_params[:name] = movie_params[:name] + "_" + @movie.year.to_s
-      movie_params[:year] = @movie.year
-      movie_params[:description] = @movie.description
-      movie_params[:image_url] = @movie.image_url
-      Movie.create!(movie_params)
+      m = Movie.new
+      m.name = "hoge" + rand(100).to_s
+      m.year = 2000
+      m.description = "This is the description"
+      m.image_url = "https://placehold.jp/150x150.png"
+      m.is_showing = true
+
+      m.save
+
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
