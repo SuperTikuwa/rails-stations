@@ -27,7 +27,11 @@ class Admin::MoviesController < ApplicationController
     logger.debug params
     logger.debug params[:movie]
     if movie_params.present?
-      @movie.create(movie_params)
+      movie_params[:name] = movie_params[:name] + "_" + @movie.year.to_s
+      movie_params[:year] = @movie.year
+      movie_params[:description] = @movie.description
+      movie_params[:image_url] = @movie.image_url
+      Movie.create!(movie_params)
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
