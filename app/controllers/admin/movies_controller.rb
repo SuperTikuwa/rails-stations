@@ -27,6 +27,7 @@ class Admin::MoviesController < ApplicationController
     logger.debug params
     logger.debug params[:movie]
     if movie_params.present?
+      @movie.create(movie_params)
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
@@ -42,7 +43,6 @@ class Admin::MoviesController < ApplicationController
   def movie_params
     if params[:movie].present?
       params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
-    else
     end
   end
 end
