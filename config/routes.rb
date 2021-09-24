@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   get "/admin/movies/:id/edit" => "admin/movies#edit"
   patch "/admin/movies/:id" => "admin/movies#update"
   put "/admin/movies/:id" => "admin/movies#update"
+  delete "/movies/:id" => "admin/movies#destroy"
 end

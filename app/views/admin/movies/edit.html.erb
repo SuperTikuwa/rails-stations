@@ -16,3 +16,6 @@
 <br>
 <%= f.submit %>
 <%end%>
+<%=link_to "/movies/#{@movie.id}" do%>
+<input type="button" value="Delete"/>
+<%end%>

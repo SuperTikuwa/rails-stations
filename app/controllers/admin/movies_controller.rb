@@ -23,15 +23,6 @@ class Admin::MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if movie_params.present?
-      m = Movie.new
-      m.name = "hoge" + rand(100).to_s
-      m.year = 2000
-      m.description = "This is the description"
-      m.image_url = "https://placehold.jp/150x150.png"
-      m.is_showing = true
-
-      m.save
-
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
@@ -39,6 +30,16 @@ class Admin::MoviesController < ApplicationController
       end
     else
       render :edit, status: :ok
+    end
+  end
+
+  def destroy
+    movie = Movie.find(params[:id])
+    if movie.nil?
+      render :edit, status: :bad_request
+    else
+      movie.destroy
+      redirect_to admin_movies_path
     end
   end
 
