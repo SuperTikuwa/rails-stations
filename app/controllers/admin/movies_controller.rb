@@ -30,8 +30,10 @@ class Admin::MoviesController < ApplicationController
       if @movie.update(movie_params)
         redirect_to admin_movies_path
       else
-        render :edit
+        render :edit, status: :ok
       end
+    else
+      render :edit, status: :ok
     end
   end
 
@@ -41,7 +43,6 @@ class Admin::MoviesController < ApplicationController
     if params[:movie].present?
       params.require(:movie).permit(:name, :year, :description, :image_url, :is_showing)
     else
-      render :edit, status: :ok
     end
   end
 end
