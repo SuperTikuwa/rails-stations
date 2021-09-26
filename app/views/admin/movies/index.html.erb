@@ -1,30 +1,40 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>タイトル</th>
-      <th>公開年</th>
-      <th>概要</th>
-      <th>画像URL</th>
-      <th>上映中</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%@movies.each do |movie|%>
-      <tr>
-        <td><%=link_to movie.id,"/admin/movies/#{movie.id}/edit"%></td>
-        <td><%=movie.name%></td>
-        <td><%=movie.year%></td>
-        <td><%=movie.description%></td>
-        <td><img src="<%=movie.image_url%>"/></td>
-        <td>
-          <%if movie.is_showing%>
-            "上映中"
-          <%else%>
-            "上映予定"
-        <%end%>
-        </td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+<%=render 'admin/layouts/links' %>
+
+<%=form_with url: admin_movies_path,method: :get do |f|%>
+<div class="search-radio-wrap">
+  <div class="search-radio">
+    <%=f.radio_button :is_showing, "all"%>
+    <%=f.label :is_showing,"すべて",{value: "all"}%>
+  </div>
+  <div class="search-radio">
+    <%=f.radio_button :is_showing , 1 %>
+    <%=f.label :is_showing,"上映中のみ",{value: 1}%>
+  </div>
+  <div class="search-radio">
+    <%=f.radio_button :is_showing, 0 %>
+    <%=f.label :is_showing,"上映予定のみ",{value: 0}%>
+  </div>
+</div>
+<div class="search-wrap">
+  <%=f.text_field :keyword,value:params[:keyword], placeholder: "keyword",class: "search-keyword"%>
+  <%=f.submit "検索",class:"search-submit"%>
+</div>
+<%end%>
+
+<div class="movie-card-wrap">
+  <%@movies.each do |movie|%>
+  <div class="movie-card">
+    <img src="<%=movie.image_url%>" class="movie-image" />
+    <div class="movie-title"><%=link_to movie.name, "/admin/movies/#{movie.id}/edit"%></div>
+    <div class="movie-year"><%=movie.year%></div>
+    <div class="movie-is-showing">
+      <%if movie.is_showing%>
+      上映中
+      <%else%>
+      上映予定
+      <%end%>
+    </div>
+    <div class="movie-description"><%=movie.description%></div>
+  </div>
+  <%end%>
+</div>

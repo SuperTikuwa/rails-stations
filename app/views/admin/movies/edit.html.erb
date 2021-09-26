@@ -1,21 +1,23 @@
 <%=form_with model: @movie,url: "/admin/movies/#{@movie.id}" do |f|%>
-<%= f.label :name %>
-<%= f.text_field :name ,value:@movie.name%>
+<%= f.label :name  , class: "form-label"%>
+<%= f.text_field :name ,value:@movie.name , class: "form-control"%>
 <br>
-<%= f.label :year%>
-<%= f.text_field :year,value:@movie.year%>
+<%= f.label :year  , class: "form-label"%>
+<%= f.text_field :year,value:@movie.year , class: "form-control"%>
 <br>
-<%= f.label :description%>
-<%= f.text_area :description,value:@movie.description %>
+<%= f.label :description , class: "form-label"%>
+<%= f.text_area :description,value:@movie.description  , class: "form-control"%>
 <br>
-<%= f.label :image_url%>
-<%= f.text_field :image_url,value:@movie.image_url %>
+<%= f.label :image_url , class: "form-label"%>
+<%= f.text_field :image_url,value:@movie.image_url  , class: "form-control"%>
 <br>
-<%= f.label :is_showing%>
-<%=f.check_box :is_showing,value:@movie.is_showing%>
+<div class="form-check form-switch">
+  <%=f.check_box :is_showing,value:@movie.is_showing , class: "form-check-input"%>
+  <%= f.label :is_showing , class: "form-check-label"%>
+</div>
 <br>
-<%= f.submit %>
+<%= f.submit class: "btn btn-primary"%>
 <%end%>
-<%=link_to "/movies/#{@movie.id}" do%>
-<input type="button" value="Delete"/>
+<%=link_to "/movies/#{@movie.id}", method: :delete, data: { confirm: "【確認】該当データを削除してもよろしいですか？" } do%>
+<input type="button" value="Delete" class="btn btn-danger" />
 <%end%>

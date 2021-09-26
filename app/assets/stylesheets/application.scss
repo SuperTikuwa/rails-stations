@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+@import "bootstrap";
+
 body{
   margin: 0;
   padding: 0;
@@ -47,6 +50,93 @@ header{
   min-height: 100%;
 }
 
-.wrap{
-  // display: flex;
+.search-radio-wrap{
+  display: flex;
+  justify-content: flex-end;
+  height: 50px;
 }
+
+.search-radio{
+  input{
+    display: none;
+    &:checked + label{
+      background-color:#9a9a9a;
+    }
+  }
+
+  label{
+    border: 1px solid #cfcfcf;
+    background-color: #cfcfcf;
+    border-radius: 10px;
+    padding: 10px;
+    margin-left: 30px;
+    &:hover{
+      background-color: #acacac;
+    }
+  }
+}
+
+.search-wrap{
+  display:flex;
+  justify-content: center;
+  height: 40px;
+}
+
+.search-keyword{
+  width: 600px;
+  font-size: 24px;
+  background-color: #f3f3f3;
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+}
+
+.search-submit{
+  font-size: 18px;
+  width: 80px;
+  border: none;
+}
+
+.movie-card-wrap{
+  display: flex;
+}
+
+.movie-card{
+  height: 250px;
+  width: 250px;
+  margin:20px;
+  padding:0;
+
+  border: 1px solid #dfdfdf;
+  border-radius: 10px;
+
+  hr{
+    margin: 0;
+    padding:0;
+  }
+
+  .movie-title{
+    font-size: 25px;
+    font-weight: bold;
+  }
+
+  .movie-year{
+    text-align: right;
+    color: #acacac;
+  }
+
+  .movie-is-showing{
+    text-align: right;
+    color: #acacac;
+  }
+
+  .movie-image{
+    min-width: 250px;
+    max-width: 250px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+  }
+}
+
+
+

@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.where(is_showing: true)
+    @movies = Movie.all
   end
 end

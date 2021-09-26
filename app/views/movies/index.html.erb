@@ -1,22 +1,11 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>タイトル</th>
-      <th>公開年</th>
-      <th>概要</th>
-      <th>画像URL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%@movies.each do |movie|%>
-      <tr>
-        <td><%=movie.id%></td>
-        <td><%=movie.name%></td>
-        <td><%=movie.year%></td>
-        <td><%=movie.description%></td>
-        <td><img src="<%=movie.image_url%>"/></td>
-      </tr>
-    <%end%>
-  </tbody>
-</table>
+<div class="movie-card-wrap">
+  <%@movies.each do |movie|%>
+  <div class="movie-card">
+    <img src="<%=movie.image_url%>" class="movie-image" />
+
+    <div class="movie-title"><%=movie.name%></div>
+    <div class="movie-year"><%=movie.year%></div>
+    <div class="movie-description"><%=movie.description%></div>
+  </div>
+  <%end%>
+</div>
