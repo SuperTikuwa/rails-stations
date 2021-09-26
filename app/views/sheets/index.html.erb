@@ -9,15 +9,23 @@
     </tr>
   </thead>
   <tbody>
+    <%count = 1%>
     <%@sheets.each do |sheet|%>
-    <div class="sheet">
-      <%if sheet.row=='a'%>
-      <tr>
+    <%if count%5==1 %>
+    <tr>
+      <%end%>
+
+      <div class="sheet">
         <div class="<%=sheet.row%>-<%=sheet.column%>">
           <td><%=sheet.row%>-<%=sheet.column%></td>
         </div>
-      </tr>
-    </div>
+      </div>
+
+      <%if count%5==0 %>
+    </tr>
     <%end%>
+    <%count = count + 1%>
+    <%end%>
+
   </tbody>
 </table>
