@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   patch "/admin/movies/:id" => "admin/movies#update"
   put "/admin/movies/:id" => "admin/movies#update"
   delete "/movies/:id" => "admin/movies#destroy"
+
+  get "/sheets" => "sheets#index"
 end

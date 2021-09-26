@@ -1,0 +1,23 @@
+<table>
+  <thead>
+    <tr>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@sheets.each do |sheet|%>
+    <div class="sheet">
+      <%if sheet.row=='a'%>
+      <tr>
+        <div class="<%=sheet.row%>-<%=sheet.column%>">
+          <td><%=sheet.row%>-<%=sheet.column%></td>
+        </div>
+      </tr>
+    </div>
+    <%end%>
+  </tbody>
+</table>

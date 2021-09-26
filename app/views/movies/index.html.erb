@@ -1,3 +1,24 @@
+<%=form_with url: movies_path,method: :get do |f|%>
+<div class="search-radio-wrap">
+  <div class="search-radio">
+    <%=f.radio_button :is_showing, "all"%>
+    <%=f.label :is_showing,"すべて",{value: "all"}%>
+  </div>
+  <div class="search-radio">
+    <%=f.radio_button :is_showing , 1 %>
+    <%=f.label :is_showing,"上映中のみ",{value: 1}%>
+  </div>
+  <div class="search-radio">
+    <%=f.radio_button :is_showing, 0 %>
+    <%=f.label :is_showing,"上映予定のみ",{value: 0}%>
+  </div>
+</div>
+<div class="search-wrap">
+  <%=f.text_field :keyword,value:params[:keyword], placeholder: "keyword",class: "search-keyword"%>
+  <%=f.submit "検索",class:"search-submit"%>
+</div>
+<%end%>
+
 <div class="movie-card-wrap">
   <%@movies.each do |movie|%>
   <div class="movie-card">
