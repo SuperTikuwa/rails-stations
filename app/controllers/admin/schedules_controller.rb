@@ -3,10 +3,6 @@ class Admin::SchedulesController < ApplicationController
     @schedules = Schedule.all
   end
 
-  def edit
-    @schedule = Schedule.find(params[:schedule_id])
-  end
-
   def new
     @schedule = Schedule.new
     @schedule.movie_id = params[:id]
@@ -20,24 +16,6 @@ class Admin::SchedulesController < ApplicationController
       redirect_to "/admin/movies/#{params[:id]}"
     else
       render :new, status: :ok
-    end
-  end
-
-  def update
-    @schedule = Schedule.find(params[:id])
-    if @schedule.update(schedule_params)
-      redirect_to admin_movies_path
-    end
-  end
-
-  def destroy
-    schedule = Schedule.find(params[:id])
-
-    if schedule.nil?
-      render :edit, status: :bad_request
-    else
-      schedule.destroy
-      redirect_to admin_movies_path
     end
   end
 

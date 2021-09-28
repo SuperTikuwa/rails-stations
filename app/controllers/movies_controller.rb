@@ -13,6 +13,12 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @schedules = Schedule.where(movie_id: params[:id])
+
+    if params[:date].present?
+      @date = params[:date]
+    else
+      @date = Date.today
+    end
+    @date = @date.split("-")
   end
 end

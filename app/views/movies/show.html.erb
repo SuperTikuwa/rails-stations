@@ -1,11 +1,39 @@
-<div class="movie-card">
-  <img src="<%=@movie.image_url%>" class="movie-image" />
+<h2><%=@movie.name%></h2>
+<div class="movie-year"><%=@movie.year%></div>
+<div class="movie-description"><%=@movie.description%></div>
+<img src="<%=@movie.image_url%>" class="movie-image" />
 
-  <div class="movie-title"><%=@movie.name%></div>
-  <div class="movie-year"><%=@movie.year%></div>
-  <div class="movie-description"><%=@movie.description%></div>
-</div>
+<%=form_with  url:"/movies/#{@movie.id}",method: :get do |f|%>
+<%=f.label :date, "日付"%>
+<%=f.date_field :date,value: @date%>
+<%=f.submit "変更" ,class: "btn btn-primary"%>
+<%end%>
 
-<%@schedules.each do |s|%>
-<%=s.start_time%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>開始時刻</th>
+      <th>終了時刻</th>
+      <th>予約</th>
+  </thead>
+  <tbody>
+    <%@movie.schedules.each do |s|%>
+    <tr>
+      <%=form_with url:"/movies/#{@movie.id}/schedules/#{s.id}/sheets",method: :get do |f|%>
+      <%if @date[0].to_i == s.start_time.year && @date[1].to_i == s.start_time.month && @date[2].to_i == s.start_time.day %>
+      <td><%=s.start_time%></td>
+      <td><%=s.end_time%></td>
+      <%=f.hidden_field :date , value: @date[0]+'-'+@date[1]+'-'+@date[2]%>
+      <td>
+        <%=f.submit "座席を予約する",class: "btn btn-primary"%>
+      </td>
+      <%end%>
+      <%end%>
+
+    </tr>
+  </tbody>
+</table>
+
+
+
 <%end%>

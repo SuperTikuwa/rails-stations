@@ -22,7 +22,8 @@
 <%end%>
 
 
-<table class="table">
+<%# <table class="table"> %>
+<table>
   <thead>
     <tr>
       <th>ID</th>
@@ -30,6 +31,8 @@
       <th>上映年</th>
       <th>詳細</th>
       <th>公開状況</th>
+      <th>画像</th>
+      <th>スケジュール</th>
       <th></th>
     </tr>
   </thead>
@@ -45,6 +48,13 @@
         上映中
         <%else%>
         上映予定
+        <%end%>
+      </td>
+      <td><%=image_tag movie.image_url,size: "50x50"%></td>
+      <td>
+        <%movie.schedules.each do |schedule|%>
+        <%=schedule.start_time%>
+        <%=schedule.end_time%>
         <%end%>
       </td>
       <td>

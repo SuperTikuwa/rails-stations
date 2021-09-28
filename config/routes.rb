@@ -20,17 +20,20 @@ Rails.application.routes.draw do
   get "/movies/:id" => "movies#show"
   get "/admin/movies/:id" => "admin/movies#show"
 
-  put "/schedules/:id" => "admin/schedules#update"
-
   get "/admin/schedules" => "admin/schedules#index"
   get "/admin/schedules/:id" => "admin/schedules#edit"
 
   get "/admin/movies/:id/schedules/new" => "admin/schedules#new"
   post "/admin/movies/:id/schedules" => "admin/schedules#create"
 
-  get "/admin/movies/:movie_id/schedules/:schedule_id" => "admin/schedules#edit"
-  delete "/schedules/:id" => "admin/schedules#destroy"
+  get "/admin/movies/:movie_id/schedules/:id" => "schedules#edit"
+  delete "/schedule/:id" => "schedules#destroy"
+  put "/schedule/:id" => "schedules#update"
 
   # シート関係
   get "/sheets" => "sheets#index"
+  get "/movies/:movie_id/schedules/:schedule_id/sheets" => "sheets#show"
+
+  # テスト用
+  get "/hoge" => "hoges#index"
 end
