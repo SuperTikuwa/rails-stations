@@ -10,4 +10,9 @@ class MoviesController < ApplicationController
       @movies.where!(is_showing: params[:is_showing])
     end
   end
+
+  def show
+    @movie = Movie.find(params[:id])
+    @schedules = Schedule.where(movie_id: params[:id])
+  end
 end

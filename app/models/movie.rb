@@ -4,4 +4,6 @@ class Movie < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
   validates :image_url, presence: true, length: { maximum: 150 }
   validates :is_showing, presence: false
+
+  has_many :schedules
 end
