@@ -1,0 +1,15 @@
+<h2><%=@schedule.movie.name%></h2>
+
+<%=form_with model: @schedule,url: "/admin/movies/#{@schedule.movie_id}/schedules" do |f|%>
+<%=f.hidden_field :movie_id,:value=>@schedule.movie_id%>
+<%= f.label :start_time,"上映開始時刻"  , class: "form-label"%>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= f.datetime_select :start_time,  use_month_numbers: true, default: Time.now+9.hour ,class: "form-control bootstrap-date"%>
+</div>
+<%= f.label :end_time,"上映終了時刻"  , class: "form-label"%>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= f.datetime_select :end_time,  use_month_numbers: true, default: Time.now+9.hour ,class: "form-control bootstrap-date"%>
+</div>
+<br>
+<%= f.submit "登録",class: "btn btn-primary"%>
+<%end%>

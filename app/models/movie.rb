@@ -5,5 +5,5 @@ class Movie < ApplicationRecord
   validates :image_url, presence: true, length: { maximum: 150 }
   validates :is_showing, presence: false
 
-  has_many :schedules
+  has_many :schedules, dependent: :destroy
 end

@@ -21,20 +21,41 @@
 </div>
 <%end%>
 
-<div class="movie-card-wrap">
-  <%@movies.each do |movie|%>
-  <div class="movie-card">
-    <img src="<%=movie.image_url%>" class="movie-image" />
-    <div class="movie-title"><%=link_to movie.name, "/admin/movies/#{movie.id}/edit"%></div>
-    <div class="movie-year"><%=movie.year%></div>
-    <div class="movie-is-showing">
-      <%if movie.is_showing%>
-      上映中
-      <%else%>
-      上映予定
-      <%end%>
-    </div>
-    <div class="movie-description"><%=movie.description%></div>
-  </div>
-  <%end%>
-</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>上映年</th>
+      <th>詳細</th>
+      <th>公開状況</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+    <tr>
+      <td><%=movie.id%></td>
+      <td><%=link_to movie.name, "/admin/movies/#{movie.id}"%></td>
+      <td><%=movie.year%></td>
+      <td><%=movie.description%></td>
+      <td>
+        <%if movie.is_showing%>
+        上映中
+        <%else%>
+        上映予定
+        <%end%>
+      </td>
+      <td>
+        <%=link_to  "/admin/movies/#{movie.id}/edit" do %>
+        <i class="far fa-edit"></i>
+        <%end%>
+        <%=link_to "/movies/#{movie.id}", method: :delete, data: { confirm: "【確認】該当データを削除してもよろしいですか？" } do%>
+        <i class="far fa-trash-alt"></i>
+        <%end%>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

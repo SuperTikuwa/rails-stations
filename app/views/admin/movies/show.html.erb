@@ -1,0 +1,38 @@
+<h2><%=@movie.name%></h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>movie_id</th>
+      <th>開始時刻</th>
+      <th>終了時刻</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+      <th />
+    </tr>
+  </thead>
+  <tbody>
+    <% @movie.schedules.each do |schedule| %>
+    <tr>
+      <td>
+        <%=link_to schedule.id ,"/admin/movies/#{@movie.id}/schedules/#{schedule.id}" %>
+      </td>
+      <td><%= schedule.movie.name %></td>
+      <td><%= schedule.movie_id%></td>
+      <td><%= schedule.start_time %></td>
+      <td><%= schedule.end_time %></td>
+      <td><%= schedule.created_at %></td>
+      <td><%= schedule.updated_at %></td>
+      <td>
+        <%=link_to "/schedules/#{schedule.id}", method: :delete, data: { confirm: "【確認】該当データを削除してもよろしいですか？" } do%>
+        <i class="far fa-trash-alt"></i>
+        <%end%>
+      </td>
+    </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<a href="/admin/movies/<%=@movie.id%>/schedules/new"><input type="button" class="btn btn-primary" value="登録ページ"></a>
