@@ -34,6 +34,9 @@ Rails.application.routes.draw do
   get "/sheets" => "sheets#index"
   get "/movies/:movie_id/schedules/:schedule_id/sheets" => "sheets#show"
 
+  #予約関係
+  get "/movies/:movie_id/schedules/:schedule_id/reservations/new" => "reservations#new"
+
   # テスト用
   get "/hoge" => "hoges#index"
 end
