@@ -15,10 +15,11 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
 
     if params[:date].present?
-      @date = params[:date]
+      params[:date] = params[:date].to_date
+      @date = params[:date].year.to_s + "-" + params[:date].month.to_s + "-" + params[:date].day.to_s
     else
-      @date = Date.today
+      @date = Date.today.strftime("%Y-%m-%d")
     end
-    @date = @date.split("-")
+    @date = @date.to_s.split("-")
   end
 end

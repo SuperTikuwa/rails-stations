@@ -36,6 +36,7 @@ Rails.application.routes.draw do
 
   #予約関係
   get "/movies/:movie_id/schedules/:schedule_id/reservations/new" => "reservations#new"
+  post "/reservation" => "reservations#create"
 
   # テスト用
   get "/hoge" => "hoges#index"

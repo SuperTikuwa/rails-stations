@@ -25,7 +25,8 @@
       <td><%=s.end_time%></td>
       <%=f.hidden_field :date , value: @date[0]+'-'+@date[1]+'-'+@date[2]%>
       <td>
-        <%=f.submit "座席を予約する",class: "btn btn-primary"%>
+
+        <%=f.button "座席を予約する",class: "btn btn-primary" %>
       </td>
       <%end%>
       <%end%>

@@ -1,4 +1,4 @@
 class Schedule < ApplicationRecord
   belongs_to :movie
-  belongs_to :reservation
+  has_many :reservations, dependent: :destroy
 end

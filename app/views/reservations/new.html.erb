@@ -1,0 +1,29 @@
+<%=params%>
+
+<h1 class="text-center bg-secondary">予約ページ</h1>
+
+<h2 class="text-center bg-secondary">選択中の映画</h2>
+<h3 class="text-center bg-light"><%=@movie.name%></h3>
+
+<h2 class="text-center bg-secondary">選択中の日時</h2>
+<h3 class="text-center bg-light"><%=params[:date]%></h3>
+
+<h2 class="text-center bg-secondary">選択中の座席</h2>
+<%@sheets.each do |sheet| %>
+<h3 class="text-center bg-light"><%=sheet.row+sheet.column.to_s%></h3>
+<%end%>
+
+<%=form_with model: @reservation, url: "/reservation",method: :post do |f|%>
+<%=f.hidden_field :movie_id, value: @movie.id%>
+<%=f.hidden_field :date, value: params[:date]%>
+<%=f.hidden_field :schedule_id, value: @schedule.id%>
+<%=f.hidden_field :sheet_id,value: params[:sheet_id]%>
+
+<%=f.label :email, "メールアドレス" ,class: "form-label"%>
+<%=f.email_field :email, placeholder: "email" , class: "form-control"%>
+
+<%=f.label :name, "氏名" , class: "form-label"%>
+<%=f.text_field :name,placeholder: "氏名" , class: "form-control"%>
+
+<%=f.submit "予約確定" ,class: "btn btn-primary"%>
+<%end%>

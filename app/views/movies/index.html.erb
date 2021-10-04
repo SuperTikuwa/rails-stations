@@ -24,7 +24,7 @@
   <div class="movie-card">
     <img src="<%=movie.image_url%>" class="movie-image" />
 
-    <div class="movie-title"><%=movie.name%></div>
+    <div class="movie-title"><%=link_to movie.name,"/movies/#{movie.id}?date=#{Date.today}"%></div>
     <div class="movie-year"><%=movie.year%></div>
     <div class="movie-description"><%=movie.description%></div>
   </div>

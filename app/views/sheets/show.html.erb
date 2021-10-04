@@ -1,0 +1,46 @@
+<h2><%=@date%></h2>
+
+<table class="table">
+  <thead>
+    <tr align="center">
+      <th colspan="7">スクリーン</th>
+    </tr>
+    <tr>
+      <th />
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th />
+    </tr>
+  </thead>
+  <tbody>
+    <%=form_with url:" /movies/#{@schedule.movie_id}/schedules/#{@schedule.id}/reservations/new" ,method: :get do |f|%>
+    <%=f.hidden_field :date, value: @date%>
+
+    <% count = 0%>
+    <% key = 0%>
+    <%=f.collection_check_boxes :sheet_id , Sheet.all, :id, :row do |b|%>
+    <%key+=1%>
+    <%if count%5==0  %>
+    <tr>
+      <th><%=b.text%></th>
+      <%end%>
+
+      <td><%=b.check_box disabled: @schedule.reservations.where(sheet_id: key).present? %></td>
+
+      <%if count%5==4 %>
+      <th><%=b.text%></th>
+    </tr>
+    <%end%>
+
+    <%count+=1%>
+
+    <%end%>
+
+  </tbody>
+</table>
+
+<%=f.submit "予約する"%>
+<%end%>
