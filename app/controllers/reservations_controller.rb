@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   def new
-    if !params["date"].present? || !params["sheet_id"].present?
+    if !params[:date].present? || !params[:sheet_id].present?
       render :new, status: :bad_request
       return
     end
